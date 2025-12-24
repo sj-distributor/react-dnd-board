@@ -1,6 +1,6 @@
 import { Draggable } from "@hello-pangea/dnd";
 import type { BaseDndData, DndClassName } from "../../types";
-import { cn } from "../../utils/cn";
+import { cn } from "@react-dnd-board/shared";
 
 export interface DndItemProps<T extends BaseDndData> {
   data: T;

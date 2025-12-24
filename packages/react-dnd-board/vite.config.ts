@@ -1,7 +1,8 @@
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import dts from "unplugin-dts/vite";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,7 @@ export default defineConfig({
         plugins: [["babel-plugin-react-compiler"]],
       },
     }),
+    tailwindcss(),
     dts({
       pathsToAliases: true,
       tsconfigPath: "./tsconfig.json",
@@ -43,5 +45,10 @@ export default defineConfig({
         },
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./vitest.setup.ts",
   },
 });

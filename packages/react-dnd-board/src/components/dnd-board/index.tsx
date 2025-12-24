@@ -1,6 +1,6 @@
 import { Droppable } from "@hello-pangea/dnd";
 import type { BaseDndData, BoardList, DroppableClassName } from "../../types";
-import { cn } from "../../utils/cn";
+import { cn } from "@react-dnd-board/shared";
 import { validateBoardLists } from "../../utils/validation";
 import { DndContext, type PickedDndContextProps } from "../dnd-context";
 import { DndList, type DndListProps } from "../dnd-list";

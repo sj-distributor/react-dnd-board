@@ -1,4 +1,4 @@
-import { cn } from "../../utils/cn";
+import { cn } from "@react-dnd-board/shared";
 
 export interface ErrorDisplayProps {
   error: string;

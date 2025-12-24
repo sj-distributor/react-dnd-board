@@ -6,7 +6,7 @@ import {
     type DraggableStateSnapshot,
 } from "@hello-pangea/dnd";
 import type { BaseDndData, DroppableClassName } from "../../types";
-import { cn } from "../../utils/cn";
+import { cn } from "@react-dnd-board/shared";
 import { validateData, validateItems } from "../../utils/validation";
 import { DndContext, type PickedDndContextProps } from "../dnd-context";
 import { DndItem, type DndItemProps } from "../dnd-item";

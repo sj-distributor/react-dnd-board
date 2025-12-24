@@ -2,6 +2,6 @@
   "files": [],
   "references": [
     { "path": "./packages/react-dnd-board" },
-    { "path": "./apps/home" }
+    { "path": "./packages/home" }
   ]
 }

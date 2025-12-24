@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "packages/*"
   ],
   "scripts": {
     "dev": "yarn workspace @react-dnd-board/home dev",
-    "build": "yarn workspaces foreach -pt run build",
+    "dev:home": "yarn workspace @react-dnd-board/home dev",
+    "dev:lib": "yarn workspace react-dnd-board dev",
+    "build": "yarn workspaces foreach -A -pt run build",
     "build:lib": "yarn workspace react-dnd-board build",
     "build:home": "yarn workspace @react-dnd-board/home build",
     "test": "vitest",
@@ -17,12 +18,10 @@
     "test:run": "vitest --run",
     "lint": "eslint .",
     "preview": "yarn workspace @react-dnd-board/home preview",
-    "clean": "yarn workspaces foreach -pt run clean"
+    "clean": "yarn workspaces foreach -A -pt run clean"
   },
   "devDependencies": {
-    "@ant-design/icons": "^6.1.0",
     "@eslint/js": "^9.39.1",
-    "@hello-pangea/dnd": "^18.0.1",
     "@tailwindcss/vite": "^4.1.17",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -33,9 +32,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/ui": "^4.0.15",
-    "ahooks": "^3.9.6",
     "babel-plugin-react-compiler": "^1.0.0",
-    "clsx": "^2.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
@@ -46,11 +43,8 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
-    "unplugin-dts": "^1.0.0-beta.6",
     "vite": "^7.2.6",
     "vitest": "^4.0.15"
   }
