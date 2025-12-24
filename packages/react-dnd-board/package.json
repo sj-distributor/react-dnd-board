@@ -1,0 +1,54 @@
+{
+  "name": "react-dnd-board",
+  "version": "0.0.3",
+  "description": "基于 @hello-pangea/dnd 的 React 拖拽组件库，提供开箱即用的面板和列表组件",
+  "keywords": [
+    "react",
+    "drag-and-drop",
+    "dnd",
+    "kanban",
+    "board",
+    "list",
+    "hello-pangea"
+  ],
+  "author": "Nacho.L",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sj-distributor/react-dnd-board"
+  },
+  "homepage": "https://github.com/sj-distributor/react-dnd-board#readme",
+  "bugs": {
+    "url": "https://github.com/sj-distributor/react-dnd-board/issues"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "scripts": {
+    "build": "tsc --build && vite build",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@hello-pangea/dnd": "^18.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0",
+    "unplugin-dts": "^1.0.0-beta.6"
+  }
+}

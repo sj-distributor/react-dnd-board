@@ -1,0 +1,23 @@
+{
+  "name": "@react-dnd-board/home",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --build && vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "react-dnd-board": "*",
+    "@hello-pangea/dnd": "^18.0.1",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "@ant-design/icons": "^6.1.0",
+    "ahooks": "^3.9.6",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17"
+  }
+}
