@@ -31,9 +31,7 @@ export function ExampleSection({
       : "mb-1 text-base font-semibold text-slate-800";
 
   const descriptionClasses =
-    variant === "error"
-      ? "text-sm text-red-700"
-      : "text-sm text-slate-600";
+    variant === "error" ? "text-sm text-red-700" : "text-sm text-slate-600";
 
   return (
     <section className="space-y-3">
@@ -52,7 +50,7 @@ export function ExampleSection({
             {code && (
               <button
                 onClick={() => setShowCode(!showCode)}
-                className="hover:bg-slate-800 active:bg-slate-900 rounded bg-slate-700 px-3 py-1 text-xs font-medium text-white"
+                className="rounded bg-slate-700 px-3 py-1 text-xs font-medium text-white hover:bg-slate-800 active:bg-slate-900"
               >
                 {showCode ? "隐藏代码" : "显示代码"}
               </button>
