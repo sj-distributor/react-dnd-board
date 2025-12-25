@@ -20,6 +20,7 @@ apps/*/dist
 
 # Local files
 *.local
+*.tgz
 
 # Editor directories and files
 .vscode/*
