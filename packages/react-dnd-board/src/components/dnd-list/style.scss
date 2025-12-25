@@ -1,0 +1,26 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.#{$prefix}-list {
+  @include card;
+  min-width: 280px;
+  transition: $transition-all;
+
+  &-dragging {
+    @include glass(0.7);
+    box-shadow: $shadow-md;
+  }
+
+  &-header {
+    @include flex-between;
+    border-bottom: 1px solid $color-slate-200;
+    padding: $spacing-4;
+  }
+
+  &-content {
+    display: flex;
+    padding: $spacing-4;
+
+    @include direction-modifiers(&);
+  }
+}

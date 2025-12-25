@@ -61,7 +61,9 @@ describe("DndBoard 组件", () => {
         />,
       );
 
-      const flexContainer = container.querySelector(".rdb\\:flex-row");
+      const flexContainer = container.querySelector(
+        ".rdb-board-container-horizontal",
+      );
       expect(flexContainer).toBeInTheDocument();
     });
 
@@ -74,7 +76,9 @@ describe("DndBoard 组件", () => {
         />,
       );
 
-      const flexContainer = container.querySelector(".rdb\\:flex-col");
+      const flexContainer = container.querySelector(
+        ".rdb-board-container-vertical",
+      );
       expect(flexContainer).toBeInTheDocument();
     });
   });
@@ -157,7 +161,7 @@ describe("DndBoard 组件", () => {
         <DndBoard lists={[]} onListsChange={vi.fn()} />,
       );
 
-      expect(container.querySelector(".rdb\\:flex")).toBeInTheDocument();
+      expect(container.querySelector(".rdb-board-container")).toBeInTheDocument();
     });
   });
 });

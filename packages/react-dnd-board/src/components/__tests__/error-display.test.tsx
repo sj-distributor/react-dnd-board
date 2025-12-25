@@ -39,7 +39,6 @@ describe("ErrorDisplay 组件", () => {
   it("应该有正确的样式类", () => {
     const { container } = render(<ErrorDisplay error="错误" />);
 
-    expect(container.firstChild).toHaveClass("rdb:bg-red-50");
-    expect(container.firstChild).toHaveClass("rdb:border-red-300");
+    expect(container.firstChild).toHaveClass("rdb-error-display");
   });
 });

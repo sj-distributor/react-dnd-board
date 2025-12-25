@@ -1,6 +1,7 @@
 import { Draggable } from "@hello-pangea/dnd";
-import type { BaseDndData, DndClassName } from "../../types";
 import { cn } from "@react-dnd-board/shared";
+import { memo } from "react";
+import type { BaseDndData, DndClassName } from "../../types";
 
 export interface DndItemProps<T extends BaseDndData> {
   data: T;
@@ -15,7 +16,7 @@ export interface DndItemProps<T extends BaseDndData> {
   children?: React.ReactNode | ((isDragging: boolean) => React.ReactNode);
 }
 
-export const DndItem = <T extends BaseDndData>({
+const DndItemInner = <T extends BaseDndData>({
   data,
   index,
   rootClassName,
@@ -47,7 +48,6 @@ export const DndItem = <T extends BaseDndData>({
             ...style,
           }}
           className={cn(
-            rootClassName,
             typeof rootClassName === "function"
               ? rootClassName(snapshot.isDragging)
               : rootClassName,
@@ -55,20 +55,9 @@ export const DndItem = <T extends BaseDndData>({
         >
           <div
             className={cn(
-              // 基础样式
-              "rdb:rounded-md",
-              "rdb:border rdb:border-slate-200 rdb:bg-white",
-              "rdb:p-3 rdb:shadow-sm rdb:transition-all",
-              // 光标样式 - 只在非自定义手柄模式下应用
-              !isDragDisabled && "active:rdb:cursor-grabbing rdb:cursor-grab",
-              isDragDisabled && "rdb:cursor-default",
-              // hover 效果（不使用 transition）
-              !snapshot.isDragging &&
-                "rdb:hover:border-slate-300 rdb:hover:shadow-md",
-              // 拖拽状态样式
-              snapshot.isDragging &&
-                "rdb:bg-white/90 rdb:shadow-md rdb:backdrop-blur-lg",
-              // 自定义类名
+              "rdb-item-content",
+              isDragDisabled && "rdb-item-content-disabled",
+              snapshot.isDragging && "rdb-item-content-dragging",
               typeof className === "function"
                 ? className(snapshot.isDragging)
                 : className,
@@ -83,3 +72,5 @@ export const DndItem = <T extends BaseDndData>({
     </Draggable>
   );
 };
+
+export const DndItem = memo(DndItemInner) as typeof DndItemInner;

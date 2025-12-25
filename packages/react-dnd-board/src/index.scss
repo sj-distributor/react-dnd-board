@@ -1,0 +1,8 @@
+// 基础样式
+@use "styles/base";
+
+// 组件样式
+@use "components/error-display/style" as error-display;
+@use "components/dnd-item/style" as dnd-item;
+@use "components/dnd-list/style" as dnd-list;
+@use "components/dnd-board/style" as dnd-board;

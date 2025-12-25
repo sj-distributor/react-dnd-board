@@ -1,0 +1,9 @@
+@use "variables" as *;
+
+.#{$prefix} {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}

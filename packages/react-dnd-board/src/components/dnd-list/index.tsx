@@ -1,16 +1,17 @@
 import {
-    Draggable,
-    Droppable,
-    type DraggableProvided,
-    type DraggableProvidedDragHandleProps,
-    type DraggableStateSnapshot,
+  Draggable,
+  Droppable,
+  type DraggableProvided,
+  type DraggableProvidedDragHandleProps,
+  type DraggableStateSnapshot,
 } from "@hello-pangea/dnd";
-import type { BaseDndData, DroppableClassName } from "../../types";
 import { cn } from "@react-dnd-board/shared";
+import type { BaseDndData, DroppableClassName } from "../../types";
 import { validateData, validateItems } from "../../utils/validation";
 import { DndContext, type PickedDndContextProps } from "../dnd-context";
 import { DndItem, type DndItemProps } from "../dnd-item";
 import { ErrorDisplay } from "../error-display";
+import { memo } from "react";
 
 interface DndListClassNames {
   header?: DroppableClassName;
@@ -46,7 +47,7 @@ export type DndListProps<T extends BaseDndData, S extends BaseDndData> = {
   onItemsChange?: (items: S[]) => void;
 } & PickedDndContextProps;
 
-export const DndList = <T extends BaseDndData, S extends BaseDndData>({
+const DndListInner = <T extends BaseDndData, S extends BaseDndData>({
   data,
   items = [],
   index,
@@ -87,7 +88,7 @@ export const DndList = <T extends BaseDndData, S extends BaseDndData>({
   }
 
   const renderDefaultItem = (item: S) => {
-    return <div className="rdb:text-slate-700">{item.label || item.id}</div>;
+    return <div className="rdb-item-text">{item.label || item.id}</div>;
   };
 
   const renderListContent = (
@@ -105,11 +106,8 @@ export const DndList = <T extends BaseDndData, S extends BaseDndData>({
           <div
             {...dropProvided.droppableProps}
             className={cn(
-              "rdb:min-w-[280px]",
-              "rdb:rounded-lg rdb:border rdb:border-slate-200 rdb:bg-white",
-              "rdb:shadow-sm rdb:transition-all",
-              snapshot?.isDragging &&
-                "rdb:bg-white/70 rdb:shadow-md rdb:backdrop-blur-lg",
+              "rdb-list",
+              snapshot?.isDragging && "rdb-list-dragging",
               typeof className === "function"
                 ? className(
                     Boolean(dropSnapshot.isDraggingOver),
@@ -126,7 +124,7 @@ export const DndList = <T extends BaseDndData, S extends BaseDndData>({
               <div
                 {...provided?.dragHandleProps}
                 className={cn(
-                  "rdb:flex rdb:items-center rdb:justify-between rdb:border-b rdb:border-slate-200 rdb:p-4",
+                  "rdb-list-header",
                   typeof classNames.header === "function"
                     ? classNames.header(
                         Boolean(dropSnapshot.isDraggingOver),
@@ -142,9 +140,10 @@ export const DndList = <T extends BaseDndData, S extends BaseDndData>({
             <div
               ref={dropProvided.innerRef}
               className={cn(
-                "rdb:flex rdb:p-4",
-                horizontal ? "rdb:flex-row" : "rdb:flex-col",
-                dropSnapshot.isDraggingOver && "",
+                "rdb-list-content",
+                horizontal
+                  ? "rdb-list-content-horizontal"
+                  : "rdb-list-content-vertical",
                 typeof classNames.content === "function"
                   ? classNames.content(
                       Boolean(dropSnapshot.isDraggingOver),
@@ -204,3 +203,5 @@ export const DndList = <T extends BaseDndData, S extends BaseDndData>({
     </DndContext>
   );
 };
+
+export const DndList = memo(DndListInner) as typeof DndListInner;

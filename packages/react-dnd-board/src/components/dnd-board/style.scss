@@ -1,0 +1,27 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.#{$prefix}-board {
+  overflow-x: auto;
+
+  // 自定义滚动条
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-slate-200;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-slate-400;
+    border-radius: 4px;
+  }
+
+  &-container {
+    display: flex;
+
+    @include direction-modifiers(&);
+  }
+}

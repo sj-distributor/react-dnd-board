@@ -119,7 +119,9 @@ describe("DndList 组件", () => {
         <DndList data={{ id: "list-1" }} items={[]} onItemsChange={vi.fn()} />,
       );
 
-      expect(container.querySelector(".rdb\\:flex-col")).toBeInTheDocument();
+      expect(
+        container.querySelector(".rdb-list-content-vertical"),
+      ).toBeInTheDocument();
     });
 
     it("应该支持横向布局", () => {
@@ -132,7 +134,9 @@ describe("DndList 组件", () => {
         />,
       );
 
-      expect(container.querySelector(".rdb\\:flex-row")).toBeInTheDocument();
+      expect(
+        container.querySelector(".rdb-list-content-horizontal"),
+      ).toBeInTheDocument();
     });
   });
 

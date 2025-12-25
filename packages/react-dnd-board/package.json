@@ -1,6 +1,6 @@
 {
   "name": "react-dnd-board",
-  "version": "0.0.3",
+  "version": "0.0.4-beta.2",
   "description": "基于 @hello-pangea/dnd 的 React 拖拽组件库，提供开箱即用的面板和列表组件",
   "keywords": [
     "react",
@@ -34,11 +34,15 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
-    }
+    },
+    "./style.css": "./dist/react-dnd-board.css"
   },
   "scripts": {
     "build": "tsc --build && vite build",
-    "publish": "npm run build && npm publish",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest --run",
+    "publish": "yarn build && npm publish",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
@@ -46,25 +50,28 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
+  "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1"
+  },
   "devDependencies": {
-    "@hello-pangea/dnd": "^18.0.1",
     "@react-dnd-board/shared": "*",
-    "@tailwindcss/vite": "^4.1.17",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.10.1",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^5.1.1",
-    "babel-plugin-react-compiler": "^1.0.0",
+    "@vitest/ui": "^4.0.15",
+    "fast-check": "^4.3.0",
     "jsdom": "^27.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^4.1.17",
+    "sass": "^1.97.1",
     "typescript": "~5.9.3",
     "unplugin-dts": "^1.0.0-beta.6",
     "vite": "^7.2.6",
-    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vitest": "^4.0.15"
   }
 }

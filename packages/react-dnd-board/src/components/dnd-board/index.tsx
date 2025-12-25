@@ -1,6 +1,7 @@
 import { Droppable } from "@hello-pangea/dnd";
-import type { BaseDndData, BoardList, DroppableClassName } from "../../types";
 import { cn } from "@react-dnd-board/shared";
+import { memo } from "react";
+import type { BaseDndData, BoardList, DroppableClassName } from "../../types";
 import { validateBoardLists } from "../../utils/validation";
 import { DndContext, type PickedDndContextProps } from "../dnd-context";
 import { DndList, type DndListProps } from "../dnd-list";
@@ -28,7 +29,7 @@ export type DndBoardProps<T extends BaseDndData, S extends BaseDndData> = {
   onListsChange?: (lists: BoardList<T, S>[]) => void;
 } & PickedDndContextProps;
 
-export const DndBoard = <T extends BaseDndData, S extends BaseDndData>({
+const DndBoardInner = <T extends BaseDndData, S extends BaseDndData>({
   lists,
   className,
   style,
@@ -46,13 +47,7 @@ export const DndBoard = <T extends BaseDndData, S extends BaseDndData>({
 
   return (
     <DndContext type="board" data={lists} onDataChange={onListsChange}>
-      <div
-        className={cn(
-          "rdb:overflow-x-auto",
-          "rdb:scrollbar-thin rdb:scrollbar-thumb-slate-400 rdb:scrollbar-track-slate-200",
-          rootClassName,
-        )}
-      >
+      <div className={cn("rdb-board", rootClassName)}>
         <Droppable
           droppableId="board"
           type="list"
@@ -63,8 +58,10 @@ export const DndBoard = <T extends BaseDndData, S extends BaseDndData>({
               ref={provided.innerRef}
               {...provided.droppableProps}
               className={cn(
-                "rdb:flex",
-                horizontal ? "rdb:flex-row" : "rdb:flex-col",
+                "rdb-board-container",
+                horizontal
+                  ? "rdb-board-container-horizontal"
+                  : "rdb-board-container-vertical",
                 typeof className === "function"
                   ? className(snapshot.isDraggingOver)
                   : className,
@@ -95,3 +92,5 @@ export const DndBoard = <T extends BaseDndData, S extends BaseDndData>({
     </DndContext>
   );
 };
+
+export const DndBoard = memo(DndBoardInner) as typeof DndBoardInner;
