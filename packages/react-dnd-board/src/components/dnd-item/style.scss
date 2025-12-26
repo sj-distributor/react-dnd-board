@@ -1,0 +1,37 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.#{$prefix}-item {
+  &-content {
+    @include card($radius-md);
+    padding: $spacing-3;
+    transition: $transition-all;
+    cursor: grab;
+
+    &:hover:not(.#{$prefix}-item-content-dragging) {
+      border-color: $color-slate-300;
+      box-shadow: $shadow-md;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &-disabled {
+      cursor: default;
+
+      &:active {
+        cursor: default;
+      }
+    }
+
+    &-dragging {
+      @include glass(0.9);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &-text {
+    color: $color-slate-700;
+  }
+}

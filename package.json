@@ -1,95 +1,33 @@
 {
-  "name": "react-dnd-board",
-  "private": false,
-  "version": "0.0.3",
-  "description": "基于 @hello-pangea/dnd 的 React 拖拽组件库，提供开箱即用的面板和列表组件",
-  "keywords": [
-    "react",
-    "drag-and-drop",
-    "dnd",
-    "kanban",
-    "board",
-    "list",
-    "hello-pangea"
-  ],
-  "author": "Nacho.L",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sj-distributor/react-dnd-board"
-  },
-  "homepage": "https://github.com/sj-distributor/react-dnd-board#readme",
-  "bugs": {
-    "url": "https://github.com/sj-distributor/react-dnd-board/issues"
-  },
+  "name": "react-dnd-board-monorepo",
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
-  "files": [
-    "dist",
-    "!dist/app",
-    "README.md",
-    "LICENCE"
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.es.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    },
-    "./style.css": "./dist/style.css"
-  },
   "scripts": {
-    "dev": "vite",
-    "build": "yarn build:lib && yarn build:app",
-    "build:lib": "tsc --build && BUILD_MODE=lib vite build",
-    "build:app": "tsc --build && vite build",
+    "dev": "yarn workspace @react-dnd-board/home dev",
+    "dev:home": "yarn workspace @react-dnd-board/home dev",
+    "build": "yarn workspaces foreach -A -pt run build",
+    "build:lib": "yarn workspace react-dnd-board build",
+    "build:home": "yarn workspace @react-dnd-board/home build",
+    "test": "yarn workspace react-dnd-board test",
+    "test:ui": "yarn workspace react-dnd-board test:ui",
+    "test:run": "yarn workspace react-dnd-board test:run",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:run": "vitest --run"
-  },
-  "dependencies": {},
-  "peerDependencies": {
-    "@hello-pangea/dnd": "^18.0.0",
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "preview": "yarn workspace @react-dnd-board/home preview",
+    "clean": "yarn workspaces foreach -A -pt run clean"
   },
   "devDependencies": {
-    "@ant-design/icons": "^6.1.0",
     "@eslint/js": "^9.39.1",
-    "@hello-pangea/dnd": "^18.0.1",
-    "@tailwindcss/vite": "^4.1.17",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "@vitest/ui": "^4.0.15",
-    "ahooks": "^3.9.6",
-    "babel-plugin-react-compiler": "^1.0.0",
-    "clsx": "^2.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
-    "fast-check": "^4.3.0",
     "globals": "^16.5.0",
-    "jsdom": "^27.2.0",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.48.1",
-    "unplugin-dts": "^1.0.0-beta.6",
-    "vite": "^7.2.6",
-    "vitest": "^4.0.15"
-  }
+    "typescript-eslint": "^8.48.1"
+  },
+  "packageManager": "yarn@4.12.0"
 }
