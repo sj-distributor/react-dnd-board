@@ -6,12 +6,16 @@ import {
   type DraggableStateSnapshot,
 } from "@hello-pangea/dnd";
 import { cn } from "@react-dnd-board/shared";
-import type { BaseDndData, DroppableClassName } from "../../types";
+import { memo } from "react";
+import type {
+  BaseDndData,
+  DndClassName,
+  DroppableClassName,
+} from "../../types";
 import { validateData, validateItems } from "../../utils/validation";
 import { DndContext, type PickedDndContextProps } from "../dnd-context";
 import { DndItem, type DndItemProps } from "../dnd-item";
 import { ErrorDisplay } from "../error-display";
-import { memo } from "react";
 
 interface DndListClassNames {
   header?: DroppableClassName;
@@ -32,6 +36,7 @@ export type DndListProps<T extends BaseDndData, S extends BaseDndData> = {
   index?: number;
   className?: DroppableClassName;
   classNames?: DndListClassNames;
+  wrapperClassName?: DndClassName;
   style?: React.CSSProperties;
   isDragDisabled?: boolean | ((data: T) => boolean);
   isDropDisabled?: boolean | ((data: T) => boolean);
@@ -53,6 +58,7 @@ const DndListInner = <T extends BaseDndData, S extends BaseDndData>({
   index,
   className,
   classNames = {},
+  wrapperClassName,
   style,
   isDragDisabled: isDragDisabledProp,
   isDropDisabled: isDropDisabledProp,
@@ -189,7 +195,15 @@ const DndListInner = <T extends BaseDndData, S extends BaseDndData>({
         isDragDisabled={isDragDisabled}
       >
         {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.draggableProps}>
+          <div
+            ref={provided.innerRef}
+            className={cn(
+              typeof wrapperClassName === "function"
+                ? wrapperClassName(Boolean(snapshot.isDragging))
+                : wrapperClassName,
+            )}
+            {...provided.draggableProps}
+          >
             {renderListContent(provided, snapshot)}
           </div>
         )}
